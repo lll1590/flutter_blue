@@ -136,6 +136,38 @@ class BluetoothDevice {
   Future<bool> get canSendWriteWithoutResponse =>
       new Future.error(new UnimplementedError());
 
+    Future<void> pairWithDevice() async {
+
+    try {
+      if (Platform.isAndroid) {
+        // 在 Android 平台上，调用原生方法创建配对
+        await FlutterBlue.instance._channel
+            .invokeMethod('createBond', id.toString());
+      } else {
+        // 在 iOS 平台上，不需要配对
+        print('Pairing not supported on iOS.');
+      }
+    } catch (ex) {
+      print(ex);
+    }
+  }
+
+  /// The current bond state of the device
+  Stream<BluetoothBondState> get bondState async* {
+    yield await FlutterBlue.instance._channel
+        .invokeMethod('bondState', id.toString())
+        .then((buffer) => new protos.DeviceBondStateResponse.fromBuffer(buffer))
+        .then((p) => BluetoothBondState.values[p.state.value]);
+
+    yield* FlutterBlue.instance._methodStream
+        .where((m) => m.method == "BondState")
+        .map((m) => m.arguments)
+        .map((buffer) => new protos.DeviceBondStateResponse.fromBuffer(buffer))
+        .where((p) => p.remoteId == id.toString())
+        .map((p) => BluetoothBondState.values[p.state.value]);
+  }
+
+  
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
