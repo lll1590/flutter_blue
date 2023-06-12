@@ -2186,3 +2186,64 @@ class MtuSizeResponse extends $pb.GeneratedMessage {
   void clearMtu() => clearField(2);
 }
 
+
+class DeviceBondStateResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'DeviceBondStateResponse', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'remoteId')
+    ..e<DeviceBondStateResponse_BluetoothDeviceState>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state', $pb.PbFieldType.OE, defaultOrMaker: DeviceStateResponse_BluetoothDeviceState.DISCONNECTED, valueOf: DeviceStateResponse_BluetoothDeviceState.valueOf, enumValues: DeviceStateResponse_BluetoothDeviceState.values)
+    ..hasRequiredFields = false
+  ;
+
+  DeviceBondStateResponse._() : super();
+  factory DeviceBondStateResponse({
+    $core.String? remoteId,
+    DeviceBondStateResponse_BluetoothDeviceState? state,
+  }) {
+    final _result = create();
+    if (remoteId != null) {
+      _result.remoteId = remoteId;
+    }
+    if (state != null) {
+      _result.state = state;
+    }
+    return _result;
+  }
+  factory DeviceBondStateResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DeviceBondStateResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+      'Using this can add significant overhead to your binary. '
+          'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+          'Will be removed in next major version')
+  DeviceBondStateResponse clone() => DeviceBondStateResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+      'Using this can add significant overhead to your binary. '
+          'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+          'Will be removed in next major version')
+  DeviceBondStateResponse copyWith(void Function(DeviceBondStateResponse) updates) => super.copyWith((message) => updates(message as DeviceBondStateResponse)) as DeviceBondStateResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static DeviceBondStateResponse create() => DeviceBondStateResponse._();
+  DeviceBondStateResponse createEmptyInstance() => create();
+  static $pb.PbList<DeviceBondStateResponse> createRepeated() => $pb.PbList<DeviceBondStateResponse>();
+  @$core.pragma('dart2js:noInline')
+  static DeviceBondStateResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeviceBondStateResponse>(create);
+  static DeviceBondStateResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get remoteId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set remoteId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRemoteId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRemoteId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  DeviceBondStateResponse_BluetoothDeviceState get state => $_getN(1);
+  @$pb.TagNumber(2)
+  set state(DeviceBondStateResponse_BluetoothDeviceState v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearState() => clearField(2);
+}
