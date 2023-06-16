@@ -913,6 +913,7 @@ public class FlutterBluePlugin implements FlutterPlugin, ActivityAware, MethodCa
             log(LogLevel.DEBUG, "[onConnectionStateChange] status: " + status + " newState: " + newState);
             if(newState == BluetoothProfile.STATE_DISCONNECTED) {
                 if(!mDevices.containsKey(gatt.getDevice().getAddress())) {
+                    log(LogLevel.DEBUG, "[onConnectionStateChange] close it:");
                     gatt.close();
                 }
             }
